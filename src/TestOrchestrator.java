@@ -4,12 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 // TODO add async
-abstract class TestOrchestrator {
-    private static Method[] getTestMethods() throws ClassNotFoundException {
+public enum TestOrchestrator {
+    TEST_ORCHESTRATOR;
+    private Method[] getTestMethods() throws ClassNotFoundException {
         Class<?> testSuit = Class.forName("TestSuite");
         return testSuit.getDeclaredMethods();
     }
-    private static Map<String, String> buildResults(Method[] methods) {
+    private Map<String, String> buildResults(Method[] methods) {
         Map<String,String> methodNamesOutputsMap = new HashMap<>();
         for (Method method:methods
         ) {
@@ -22,10 +23,10 @@ abstract class TestOrchestrator {
         return methodNamesOutputsMap;
     }
 
-    private static void printSummary(Map<String, String> mapOfMethodNamesAndOutputs){
+    private void printSummary(Map<String, String> mapOfMethodNamesAndOutputs){
         mapOfMethodNamesAndOutputs.forEach((k, v) -> System.out.printf( "%-15s %15s %n",k,v));
     }
-    static void runTestSuite() {
+    void runTestSuite() {
         try {
             printSummary(buildResults(getTestMethods()));
         } catch (ClassNotFoundException e) {
