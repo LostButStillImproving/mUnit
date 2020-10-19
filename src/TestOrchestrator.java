@@ -5,7 +5,9 @@ import java.util.Map;
 
 // TODO add async
 public enum TestOrchestrator {
+    
     TEST_ORCHESTRATOR;
+    
     private Method[] getTestMethods() throws ClassNotFoundException {
         Class<?> testSuit = Class.forName("TestSuite");
         return testSuit.getDeclaredMethods();
