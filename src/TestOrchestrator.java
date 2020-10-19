@@ -4,9 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // TODO add async
-class TestOrchestrator {
-    private TestOrchestrator() {
-    }
+abstract class TestOrchestrator {
     private static class TestMethodGetter {
         static Method[] getTestMethods() throws ClassNotFoundException {
             Class<?> testSuit = Class.forName("TestSuite");
